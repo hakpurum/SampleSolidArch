@@ -4,6 +4,7 @@ using Sample.Core.Interface;
 using Sample.Core.Common;
 using System.Linq.Expressions;
 using Sample.Core.Enums;
+using Sample.Core.Extension;
 
 
 namespace Sample.Core.Service
@@ -30,6 +31,7 @@ namespace Sample.Core.Service
         public Result<T> Get(Expression<Func<T, bool>> filter = null)
         {
             Result<T> result = new Result<T>();
+
             try
             {
                 _loggingService.Info("Get()");
@@ -108,10 +110,11 @@ namespace Sample.Core.Service
                 result.ResultMessage = ResultStatusCode.OK.ToString();
                 result.setTrue();
 
+
             }
             catch (Exception ex)
             {
-                _loggingService.Error("Hata Oluştu => " + ex.ToString());
+                _loggingService.Error("Parameters => " + entity.ObjectToString() + "Hata Oluştu => " + ex.ToString());
                 result.ResultCode = (int)ResultStatusCode.InternalServerError;
                 result.ResultMessage = "Hata Oluştur => " + ex.ToString();
                 result.setFalse();
@@ -134,7 +137,7 @@ namespace Sample.Core.Service
             }
             catch (Exception ex)
             {
-                _loggingService.Error("Hata Oluştu => " + ex.ToString());
+                _loggingService.Error("Parameters => " + entity.ObjectToString() + "Hata Oluştu => " + ex.ToString());
                 result.ResultCode = (int)ResultStatusCode.InternalServerError;
                 result.ResultMessage = "Hata Oluştur => " + ex.ToString();
                 result.setFalse();
@@ -158,7 +161,7 @@ namespace Sample.Core.Service
             }
             catch (Exception ex)
             {
-                _loggingService.Error("Hata Oluştu => " + ex.ToString());
+                _loggingService.Error("Parameters => " + entity.ObjectToString() + "Hata Oluştu => " + ex.ToString());
                 result.ResultCode = (int)ResultStatusCode.InternalServerError;
                 result.ResultMessage = "Hata Oluştur => " + ex.ToString();
                 result.ResultObject = true;
