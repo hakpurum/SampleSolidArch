@@ -106,6 +106,7 @@ namespace Sample.Core.Service
             {
                 _loggingService.Info("Add()");
                 result.ResultObject = _repository.Add(entity);
+                _unitOfWork.Commit();
                 result.ResultCode = (int)ResultStatusCode.OK;
                 result.ResultMessage = ResultStatusCode.OK.ToString();
                 result.setTrue();
@@ -130,6 +131,7 @@ namespace Sample.Core.Service
             {
                 _loggingService.Info("Update()");
                 result.ResultObject = _repository.Update(entity);
+                _unitOfWork.Commit();
                 result.ResultCode = (int)ResultStatusCode.OK;
                 result.ResultMessage = ResultStatusCode.OK.ToString();
                 result.setTrue();
@@ -153,6 +155,7 @@ namespace Sample.Core.Service
             {
                 _loggingService.Info("Delete()");
                 _repository.Delete(entity);
+                _unitOfWork.Commit();
                 result.ResultCode = (int)ResultStatusCode.OK;
                 result.ResultMessage = ResultStatusCode.OK.ToString();
                 result.ResultObject = true;
