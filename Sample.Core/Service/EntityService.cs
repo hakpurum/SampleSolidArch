@@ -22,13 +22,13 @@ namespace Sample.Core.Service
             _loggingService = logingService;
         }
 
-        public Result<T> Get(T entity)
+        public virtual Result<T> Get(T entity)
         {
             Result<T> result = new Result<T>();
             return result;
         }
 
-        public Result<T> Get(Expression<Func<T, bool>> filter = null)
+        public virtual Result<T> Get(Expression<Func<T, bool>> filter = null)
         {
             Result<T> result = new Result<T>();
 
@@ -52,7 +52,7 @@ namespace Sample.Core.Service
             return result;
         }
 
-        public Result<IEnumerable<T>> GetList(Expression<Func<T, bool>> filter = null)
+        public virtual Result<IEnumerable<T>> GetList(Expression<Func<T, bool>> filter = null)
         {
             Result<IEnumerable<T>> result = new Result<IEnumerable<T>>();
             try
@@ -75,7 +75,7 @@ namespace Sample.Core.Service
             return result;
         }
 
-        public Result<IEnumerable<T>> GetListPaging(Expression<Func<T, bool>> filter, out int total, int index = 0, int size = 15)
+        public virtual Result<IEnumerable<T>> GetListPaging(Expression<Func<T, bool>> filter, out int total, int index = 0, int size = 15)
         {
             Result<IEnumerable<T>> result = new Result<IEnumerable<T>>();
 
@@ -99,7 +99,7 @@ namespace Sample.Core.Service
             return result;
         }
 
-        public Result<T> Add(T entity)
+        public virtual Result<T> Add(T entity)
         {
             Result<T> result = new Result<T>();
             try
@@ -123,7 +123,7 @@ namespace Sample.Core.Service
             return result;
         }
 
-        public Result<T> Update(T entity)
+        public virtual Result<T> Update(T entity)
         {
             Result<T> result = new Result<T>();
             try
@@ -146,7 +146,7 @@ namespace Sample.Core.Service
             return result;
         }
 
-        public Result<bool> Delete(T entity)
+        public virtual Result<bool> Delete(T entity)
         {
             Result<bool> result = new Result<bool>();
             try
