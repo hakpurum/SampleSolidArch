@@ -173,5 +173,67 @@ namespace Sample.Core.Service
 
             return result;
         }
+
+        public Result<bool> AddRange(IEnumerable<T> listEntity)
+        {
+            var result = new Result<bool>();
+            try
+            {
+                //_loggingService.Info(listEntity.ObjectToString());
+                _repository.AddRange(listEntity);
+                _unitOfWork.Commit();
+                result.ResultObject = true;
+                result.ResultCode = (int)ResultStatusCode.OK;
+                result.ResultMessage = ResultStatusCode.OK.ToString();
+            }
+            catch (Exception ex)
+            {
+                result.ResultCode = (int)ResultStatusCode.InternalServerError;
+                result.ResultMessage = "Hata Oluştu => " + ex;
+            }
+
+            return result;
+        }
+
+        public Result<bool> Delete(Expression<Func<T, bool>> filter)
+        {
+            var result = new Result<bool>();
+            try
+            {
+                _loggingService.Info("Delete()");
+                _repository.Delete(filter);
+                _unitOfWork.Commit();
+                result.ResultCode = (int)ResultStatusCode.OK;
+                result.ResultMessage = ResultStatusCode.OK.ToString();
+            }
+            catch (Exception ex)
+            {
+                result.ResultCode = (int)ResultStatusCode.InternalServerError;
+                result.ResultMessage = "Hata Oluştu => " + ex;
+            }
+
+            return result;
+        }
+
+        public Result<bool> DeleteAll(Expression<Func<T, bool>> filter = null)
+        {
+            var result = new Result<bool>();
+            try
+            {
+                //_loggingService.Info(filter.ObjectToString());
+                _repository.DeleteAll(filter);
+                _unitOfWork.Commit();
+                result.ResultObject = true;
+                result.ResultCode = (int)ResultStatusCode.OK;
+                result.ResultMessage = ResultStatusCode.OK.ToString();
+            }
+            catch (Exception ex)
+            {
+                result.ResultCode = (int)ResultStatusCode.InternalServerError;
+                result.ResultMessage = "Hata Oluştu => " + ex;
+            }
+
+            return result;
+        }
     }
 }
