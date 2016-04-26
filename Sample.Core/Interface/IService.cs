@@ -15,10 +15,7 @@ namespace Sample.Core.Interface
         Result<IEnumerable<T>> GetList(Expression<Func<T,bool>> filter = null);
         Result<IEnumerable<T>> GetListPaging(Expression<Func<T, bool>> filter,out int total,int index = 0,int size = 15);
         Result<T> Add(T entity);
-        Result<bool> AddRange(IEnumerable<T> listEntity);
         Result<T> Update(T entity);
         Result<bool> Delete(T entity);
-        Result<bool> Delete(Expression<Func<T, bool>> filter);
-        Result<bool> DeleteAll(Expression<Func<T, bool>> filter = null);
     }
 }

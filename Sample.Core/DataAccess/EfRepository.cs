@@ -10,7 +10,7 @@ using System.Data.Entity.Validation;
 
 namespace Sample.Core.DataAccess
 {
-    public abstract class EfRepository<TEntity> : IEntityRepository<TEntity> where TEntity : class, IEntity, new()
+    public abstract class EfRepository<TEntity> : IEntityRepository<TEntity> where TEntity : class,IEntity, new()
     {
         protected DbContext context;
         protected readonly IDbSet<TEntity> _dbset;
@@ -76,7 +76,7 @@ namespace Sample.Core.DataAccess
                     }
                 }
 
-                throw new Exception(errorMessage, ex);
+                throw new Exception(errorMessage,ex);
 
             }
         }
@@ -104,61 +104,13 @@ namespace Sample.Core.DataAccess
                     }
                 }
 
-                throw new Exception(errorMessage, ex);
+                throw new Exception(errorMessage,ex);
             }
         }
 
         public void Save()
         {
             context.SaveChanges();
-        }
-
-        public void AddRange(IEnumerable<TEntity> listEntity)
-        {
-            if (listEntity == null)
-                throw new ArgumentNullException("listEntity");
-            foreach (var entity in listEntity)
-            {
-                _dbset.Add(entity);
-            }
-        }
-
-        public void Delete(Expression<Func<TEntity, bool>> filter)
-        {
-            TEntity entity = Get(filter);
-            if (entity != null)
-            {
-                try
-                {
-                    var entry = context.Entry(entity);
-                    if (entry.State == EntityState.Detached)
-                        _dbset.Attach(entity);
-                    _dbset.Remove(entity);
-
-                }
-                catch (DbEntityValidationException dbEx)
-                {
-                    foreach (var validationError in dbEx.EntityValidationErrors.SelectMany(validationErrors => validationErrors.ValidationErrors))
-                    {
-                        errorMessage += Environment.NewLine + string.Format("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
-                    }
-
-                    throw new Exception(errorMessage, dbEx);
-                }
-            }
-        }
-
-        public void DeleteAll(Expression<Func<TEntity, bool>> filter = null)
-        {
-
-            if (filter != null)
-            {
-                IQueryable<TEntity> getDeleteList = GetList(filter);
-                foreach (var item in getDeleteList)
-                {
-                    Delete(item);
-                }
-            }
         }
     }
 }
