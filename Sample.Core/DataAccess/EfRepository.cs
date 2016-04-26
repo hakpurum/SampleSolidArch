@@ -112,5 +112,54 @@ namespace Sample.Core.DataAccess
         {
             context.SaveChanges();
         }
+
+        public void AddRange(IEnumerable<TEntity> listEntity)
+        {
+            if (listEntity == null)
+                throw new ArgumentNullException("listEntity");
+            foreach (var entity in listEntity)
+            {
+                _dbset.Add(entity);
+            }
+
+        }
+
+        public virtual void Delete(Expression<Func<TEntity, bool>> filter)
+        {
+            TEntity entity = Get(filter);
+            if (entity != null)
+            {
+                try
+                {
+                    var entry = context.Entry(entity);
+                    if (entry.State == EntityState.Detached)
+                        _dbset.Attach(entity);
+                    _dbset.Remove(entity);
+
+                }
+                catch (DbEntityValidationException dbEx)
+                {
+                    foreach (var validationError in dbEx.EntityValidationErrors.SelectMany(validationErrors => validationErrors.ValidationErrors))
+                    {
+                        errorMessage += Environment.NewLine + string.Format("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
+                    }
+
+                    throw new Exception(errorMessage, dbEx);
+                }
+            }
+        }
+
+        public virtual void DeleteAll(Expression<Func<TEntity, bool>> filter = null)
+        {
+            if (filter != null)
+            {
+                IQueryable<TEntity> getDeleteList = GetList(filter);
+                foreach (var item in getDeleteList)
+                {
+                    Delete(item);
+                }
+
+            }
+        }
     }
 }
