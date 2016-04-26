@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Core", "Sample.Core\Sample.Core.csproj", "{ABDC114F-B2A9-4CCD-94FF-25DB9CEC57BA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sega.Core", "Sega.Core", "{23C659FE-2AFF-41D6-9BBF-E83FFBB72ABD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Core.Web", "Sample.Core.Web\Sample.Core.Web.csproj", "{6099294C-4E59-4D6F-9305-8B78DECDCF78}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +19,16 @@ Global
 		{ABDC114F-B2A9-4CCD-94FF-25DB9CEC57BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABDC114F-B2A9-4CCD-94FF-25DB9CEC57BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABDC114F-B2A9-4CCD-94FF-25DB9CEC57BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6099294C-4E59-4D6F-9305-8B78DECDCF78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6099294C-4E59-4D6F-9305-8B78DECDCF78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6099294C-4E59-4D6F-9305-8B78DECDCF78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6099294C-4E59-4D6F-9305-8B78DECDCF78}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{ABDC114F-B2A9-4CCD-94FF-25DB9CEC57BA} = {23C659FE-2AFF-41D6-9BBF-E83FFBB72ABD}
+		{6099294C-4E59-4D6F-9305-8B78DECDCF78} = {23C659FE-2AFF-41D6-9BBF-E83FFBB72ABD}
 	EndGlobalSection
 EndGlobal
