@@ -9,12 +9,13 @@ namespace Sample.Entities.Concrete
     {
         [Key]
         public int UserId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public virtual string FirstName { get; set; }
+        public virtual string LastName { get; set; }
+        public virtual string Email { get; set; }
+        public virtual DateTime CreatedDate { get; set; }
 
         [ForeignKey("UserGroup")]
         public int UserGroupId { get; set; }
+        public virtual UserGroup UserGroup { get; set; }
     }
 }

@@ -11,6 +11,7 @@ using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
 using Sample.Mvc.Modules;
+using System.Web.Optimization;
 
 namespace Sample.Mvc
 {
@@ -22,6 +23,7 @@ namespace Sample.Mvc
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
 
 
             //Autofac Configuration

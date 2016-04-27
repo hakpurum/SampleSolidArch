@@ -9,4 +9,10 @@ namespace Sample.Entities.Concrete
     class PartialClass
     {
     }
+
+    public partial class User
+    {
+        public IEnumerable<UserGroup> UserGroups { get; set; }
+    }
+    
 }

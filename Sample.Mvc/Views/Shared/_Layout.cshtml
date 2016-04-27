@@ -22,8 +22,11 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
-    <div> 
+    <div class="container">
         @RenderBody()
+
+        @Html.Raw(TempData["ResultMessage"])
+
     </div>
 
 
