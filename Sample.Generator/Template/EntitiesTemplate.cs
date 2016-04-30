@@ -28,15 +28,8 @@ namespace Sample.Generator.Template
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\nusing ");
-            
-            #line 7 "E:\GitHub\Sample.Generator\Template\EntitiesTemplate.tt"
-            this.Write(this.ToStringHelper.ToStringWithCulture(Model.NameSpaceName));
-            
-            #line default
-            #line hidden
-            this.Write(".Entities;\r\nusing System;\r\nusing System.ComponentModel.DataAnnotations;\r\nusing Sa" +
-                    "mple.Core.Interface;\r\n\r\nnamespace ");
+            this.Write("\r\nusing Sample.Core.Interface;\r\nusing System;\r\nusing System.ComponentModel.DataAn" +
+                    "notations;\r\nusing System.ComponentModel.DataAnnotations.Schema;\r\n\r\nnamespace ");
             
             #line 12 "E:\GitHub\Sample.Generator\Template\EntitiesTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(Model.NameSpaceName));
@@ -50,7 +43,14 @@ namespace Sample.Generator.Template
             
             #line default
             #line hidden
-            this.Write(" : IEntity\r\n    {\r\n\r\n    }\r\n\r\n}\r\n");
+            this.Write(" : IEntity\r\n    {\r\n\t\t");
+            
+            #line 16 "E:\GitHub\Sample.Generator\Template\EntitiesTemplate.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(Model.Columns));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n    }\r\n\r\n}\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }

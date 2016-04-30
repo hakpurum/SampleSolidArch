@@ -1,5 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
 using Sample.Generator.Template;
+using Microsoft.SqlServer.Management.Smo;
+using Sample.Generator.Helper;
 
 namespace Sample.Generator
 {
@@ -9,13 +14,13 @@ namespace Sample.Generator
         public void Generate()
         {
             var tables = GetTables();
-
-            for (int i = 0; i < tables.Length; i++)
+            foreach (Table table in tables)
             {
-                var fileName = _generatePath + "Concrete/" + tables[i] + ".cs";
+                var tableName = table.Name.ReplaceWith();
+                var fileName = _generatePath + "Concrete/" + tableName + ".cs";
                 var t1 = new EntitiesTemplate
                 {
-                    Model = new EntitiesTemplateModel { ClassName = tables[i] }
+                    Model = new EntitiesTemplateModel { ClassName = tableName, Columns = table.Columns.ToProperties() }
                 };
 
                 CreateFile(fileName, t1.TransformText());
@@ -25,6 +30,7 @@ namespace Sample.Generator
             Console.WriteLine("------------------------------------------------------------");
             Console.WriteLine("Generated : EntitiesGeneration");
             Console.WriteLine("Generated Folder :" + _generatePath);
+            Console.WriteLine("Generated Files :" + GeneratedFiles);
             Console.WriteLine("Generated : Completed");
             Console.WriteLine("------------------------------------------------------------");
             #endregion

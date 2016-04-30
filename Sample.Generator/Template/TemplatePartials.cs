@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace Sample.Generator.Template
 {
     #region Partial Classes
@@ -35,7 +37,11 @@ namespace Sample.Generator.Template
 
     #region Models
     public class DataLayerEfTemplateModel : BaseTemplateModel { }
-    public class EntitiesTemplateModel : BaseTemplateModel { }
+
+    public class EntitiesTemplateModel : BaseTemplateModel
+    {
+        public string Columns { get; set; }
+    }
     public class DataLayerInterfaceTemplateModel : BaseTemplateModel { }
     public class BusinessTemplateModel : BaseTemplateModel { }
     public class BusinessManagerTemplateModel : BaseTemplateModel { }

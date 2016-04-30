@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Linq;
+using Microsoft.SqlServer.Management.Smo;
+using Sample.Generator.Helper;
 using Sample.Generator.Template;
 
 namespace Sample.Generator
@@ -10,17 +13,18 @@ namespace Sample.Generator
         public void Generate()
         {
             var tables = GetTables();
-
-            for (int i = 0; i < tables.Length; i++)
+            foreach (var tableName in from Table table in tables select table.Name.ReplaceWith())
             {
-                GenerateInterfaces(tables[i]);
-                GenerateEfDal(tables[i]);
+                GenerateInterfaces(tableName);
+                GenerateEfDal(tableName);
             }
+
 
             #region Summary
             Console.WriteLine("------------------------------------------------------------");
-            Console.WriteLine("Generated : DataLayerGeneration");
+            Console.WriteLine("Generated : EntitiesGeneration");
             Console.WriteLine("Generated Folder :" + _generatePath);
+            Console.WriteLine("Generated Files : /n " + GeneratedFiles);
             Console.WriteLine("Generated : Completed");
             Console.WriteLine("------------------------------------------------------------");
             #endregion

@@ -4,16 +4,16 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 
-using <#=Model.NameSpaceName #>.Entities;
+using Sample.Core.Interface;
 using System;
 using System.ComponentModel.DataAnnotations;
-using Sample.Core.Interface;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace <#=Model.NameSpaceName #>.Entities.Concrete
 {
     public partial class <#=Model.ClassName #> : IEntity
     {
-
+		<#=Model.Columns #>
     }
 
 }

@@ -14,9 +14,9 @@ namespace Sample.Generator.Helper
             return ConfigurationSettings.AppSettings.Get(KeyName);
         }
 
-        public static string[] GetTables()
-        {
-            return GetApp("DbTables").Split(',');
-        }
+        //public static string[] GetTables()
+        //{
+        //    return GetApp("DbTables").Split(',');
+        //}
     }
 }
