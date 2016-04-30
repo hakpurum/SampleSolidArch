@@ -25,18 +25,7 @@ namespace Sample.Mvc.Infrastructure
         {
             try
             {
-                #region Builder Lamda Expression
-
-                //where koşuluna gönderilecek lamdaexpression oluşturduk dinamik olarak
-                var argParam = Expression.Parameter(typeof(TEntity), "f");
-                Expression nameProperty = Expression.Property(argParam, new TEntity().GetPrimaryKeyName().Name);
-                var val1 = Expression.Constant(id);
-                Expression e1 = Expression.Equal(nameProperty, val1);
-                var lambda = Expression.Lambda<Func<TEntity, bool>>(e1, argParam);
-
-                #endregion
-
-                var result = _typeService.Get(lambda);
+                var result = _typeService.Get(FuncFilter(id));
                 if (result.ResultCode != (int)ResultStatusCode.OK) return RedirectToAction("Index");
                 var tEditViewModel = result.ResultObject.ToCast<TEditViewModel>();
                 SetAlertMessage(result);
@@ -53,18 +42,7 @@ namespace Sample.Mvc.Infrastructure
         {
             try
             {
-                #region Builder Lamda Expression
-
-                //where koşuluna gönderilecek lamdaexpression oluşturduk dinamik olarak
-                var argParam = Expression.Parameter(typeof(TEntity), "f");
-                Expression nameProperty = Expression.Property(argParam, new TEntity().GetPrimaryKeyName().Name);
-                var val1 = Expression.Constant(id);
-                Expression e1 = Expression.Equal(nameProperty, val1);
-                var lambda = Expression.Lambda<Func<TEntity, bool>>(e1, argParam);
-
-                #endregion
-
-                var result = _typeService.Get(lambda);
+                var result = _typeService.Get(FuncFilter(id));
                 if (result.ResultCode != (int)ResultStatusCode.OK) return RedirectToAction("Index");
                 var tEditViewModel = result.ResultObject.ToCast<TEditViewModel>();
                 SetAlertMessage(result);
@@ -82,18 +60,7 @@ namespace Sample.Mvc.Infrastructure
         {
             try
             {
-                #region Builder Lamda Expression
-
-                //where koşuluna gönderilecek lamdaexpression oluşturduk dinamik olarak
-                var argParam = Expression.Parameter(typeof(TEntity), "f");
-                Expression nameProperty = Expression.Property(argParam, new TEntity().GetPrimaryKeyName().Name);
-                var val1 = Expression.Constant(id);
-                Expression e1 = Expression.Equal(nameProperty, val1);
-                var lambda = Expression.Lambda<Func<TEntity, bool>>(e1, argParam);
-
-                #endregion
-
-                var tEntity = collection.FormParse(_typeService.Get(lambda).ResultObject);
+                var tEntity = collection.FormParse(_typeService.Get(FuncFilter(id)).ResultObject);
                 tEntity.SetDefaultDateTime("UpdateDate");
                 var edit = _typeService.Update(tEntity);
                 SetAlertMessage(edit);
@@ -133,18 +100,7 @@ namespace Sample.Mvc.Infrastructure
         {
             try
             {
-                #region Builder Lamda Expression
-
-                //where koşuluna gönderilecek lamdaexpression oluşturduk dinamik olarak
-                var argParam = Expression.Parameter(typeof(TEntity), "f");
-                Expression nameProperty = Expression.Property(argParam, new TEntity().GetPrimaryKeyName().Name);
-                var val1 = Expression.Constant(id);
-                Expression e1 = Expression.Equal(nameProperty, val1);
-                var lambda = Expression.Lambda<Func<TEntity, bool>>(e1, argParam);
-
-                #endregion
-
-                var result = _typeService.Get(lambda);
+                var result = _typeService.Get(FuncFilter(id));
                 if (result.ResultCode != (int)ResultStatusCode.OK) return RedirectToAction("Index");
                 var tEditViewModel = result.ResultObject.ToCast<TEditViewModel>();
                 return View(tEditViewModel);
@@ -162,17 +118,7 @@ namespace Sample.Mvc.Infrastructure
         {
             try
             {
-                #region Builder Lamda Expression
-
-                //where koşuluna gönderilecek lamdaexpression oluşturduk dinamik olarak
-                var argParam = Expression.Parameter(typeof(TEntity), "f");
-                Expression nameProperty = Expression.Property(argParam, new TEntity().GetPrimaryKeyName().Name);
-                var val1 = Expression.Constant(id);
-                Expression e1 = Expression.Equal(nameProperty, val1);
-                var lambda = Expression.Lambda<Func<TEntity, bool>>(e1, argParam);
-
-                #endregion
-                var delete = _typeService.Delete(lambda);
+                var delete = _typeService.Delete(FuncFilter(id));
                 SetAlertMessage(delete);
                 return RedirectToAction("Index");
             }
@@ -182,5 +128,17 @@ namespace Sample.Mvc.Infrastructure
                 return RedirectToAction("Index");
             }
         }
+
+        private static Expression<Func<TEntity, bool>> FuncFilter(int id)
+        {
+            var argParam = Expression.Parameter(typeof(TEntity), "f");
+            Expression nameProperty = Expression.Property(argParam, new TEntity().GetPrimaryKeyName().Name);
+            var val = Expression.Constant(id);
+            Expression e = Expression.Equal(nameProperty, val);
+            var lambda = Expression.Lambda<Func<TEntity, bool>>(e, argParam);
+
+            return lambda;
+        }
+
     }
 }

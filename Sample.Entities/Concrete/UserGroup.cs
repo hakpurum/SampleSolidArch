@@ -9,7 +9,7 @@ namespace Sample.Entities.Concrete
     {
         [Key]
         public int UserGroupId { get; set; }
-        public string GroupName { get; set; }
+        public virtual string GroupName { get; set; }
         public DateTime CreatedDate { get; set; }
     }
 }

@@ -1,0 +1,20 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+
+using System.Data.Entity;
+using Sample.Core.DataAccess;
+using <#=Model.NameSpaceName #>.DataLayer.Interfaces;
+using <#=Model.NameSpaceName #>.Entities.Concrete;
+
+namespace <#=Model.NameSpaceName #>.DataLayer.Concrete.EntityFramework
+{
+    public class Ef<#=Model.ClassName #>Dal : EfRepository<<#=Model.ClassName #>>, I<#=Model.ClassName #>Dal
+    {
+        public Ef<#=Model.ClassName #>Dal(DbContext context) : base(context)
+        {
+        }
+    }
+}

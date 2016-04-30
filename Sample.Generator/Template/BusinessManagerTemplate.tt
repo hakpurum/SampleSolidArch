@@ -1,0 +1,35 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+
+
+using <#=Model.NameSpaceName #>.Business.Interfaces;
+using Sample.Core.Interface;
+using Sample.Core.Service;
+using <#=Model.NameSpaceName #>.DataLayer.Interfaces;
+using <#=Model.NameSpaceName #>.Entities.Concrete;
+
+namespace Sample.Business.Concrete
+{
+    public class <#=Model.ClassName #>Manager : EntityService<<#=Model.ClassName #>>, I<#=Model.ClassName #>Service
+    {
+        #region Constructor
+
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly I<#=Model.ClassName #>Dal _<#=Model.ClassNameFirstLowerCase#>Dal;
+        private readonly INLogService _nLogService;
+
+        public <#=Model.ClassName #>Manager(IUnitOfWork unitOfWork, I<#=Model.ClassName #>Dal <#=Model.ClassNameFirstLowerCase#>Dal, INLogService nLogService)
+            : base(unitOfWork, <#=Model.ClassNameFirstLowerCase#>Dal, nLogService)
+        {
+            _<#=Model.ClassNameFirstLowerCase#>Dal = <#=Model.ClassNameFirstLowerCase#>Dal;
+            _nLogService = nLogService;
+            _unitOfWork = unitOfWork;
+        }
+
+        #endregion
+
+    }
+}

@@ -243,11 +243,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UserGroupController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\BaseController.cs" />
     <Compile Include="Infrastructure\GenericController.cs" />
+    <Compile Include="Models\UserGroupModels\UserGroupListViewModel.cs" />
+    <Compile Include="Models\UserGroupModels\UserGroupViewModel.cs" />
     <Compile Include="Models\UserModels\UserListViewModel.cs" />
     <Compile Include="Models\UserModels\UserViewModel.cs" />
     <Compile Include="Modules\DataLayerModule.cs" />
@@ -271,6 +274,11 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="scripts\jquery-2.2.3.min.map" />
     <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\UserGroup\Index.cshtml" />
+    <Content Include="Views\UserGroup\Details.cshtml" />
+    <Content Include="Views\UserGroup\Edit.cshtml" />
+    <Content Include="Views\UserGroup\Create.cshtml" />
+    <Content Include="Views\UserGroup\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
