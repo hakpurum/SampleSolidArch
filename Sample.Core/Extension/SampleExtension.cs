@@ -220,11 +220,4 @@ namespace Sample.Core.Extension
         }
     }
 
-    public static class ConfigExtension
-    {
-        public static string GetConfigValue(string key)
-        {
-            return ConfigurationManager.AppSettings[key];
-        }
-    }
 }
