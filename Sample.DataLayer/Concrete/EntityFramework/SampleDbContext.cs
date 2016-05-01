@@ -17,6 +17,9 @@ namespace Sample.DataLayer.Concrete.EntityFramework
         public DbSet<User> Users { get; set; }
         public DbSet<UserGroup> UserGroups { get; set; }
 
+        public DbSet<Setting> Settings { get; set; }
+        public DbSet<Category> Categories { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             var typesToRegister = Assembly.GetExecutingAssembly().GetTypes()

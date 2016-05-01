@@ -16,7 +16,7 @@ namespace Sample.Mvc.Controllers
     public class UserController : GenericController<User, UserViewModel>
     {
         #region Constructor
-
+        
         private readonly IUserService _userService;
         private readonly IUserGroupService _userGroupService;
 

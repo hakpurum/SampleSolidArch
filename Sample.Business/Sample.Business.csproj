@@ -53,8 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Concrete\CategoryManager.cs" />
+    <Compile Include="Concrete\SettingManager.cs" />
     <Compile Include="Concrete\UserGroupManager.cs" />
     <Compile Include="Concrete\UserManager.cs" />
+    <Compile Include="Interfaces\ICategoryService.cs" />
+    <Compile Include="Interfaces\ISettingService.cs" />
     <Compile Include="Interfaces\IUserGroupService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Modules\EfCoreModule.cs" />

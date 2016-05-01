@@ -49,9 +49,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Concrete\EntityFramework\EfCategoryDal.cs" />
+    <Compile Include="Concrete\EntityFramework\EfSettingDal.cs" />
     <Compile Include="Concrete\EntityFramework\EfUserDal.cs" />
     <Compile Include="Concrete\EntityFramework\EfUserGroupDal.cs" />
     <Compile Include="Concrete\EntityFramework\SampleDbContext.cs" />
+    <Compile Include="Interfaces\ICategoryDal.cs" />
+    <Compile Include="Interfaces\ISettingDal.cs" />
     <Compile Include="Interfaces\IUserDal.cs" />
     <Compile Include="Interfaces\IUserGroupDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

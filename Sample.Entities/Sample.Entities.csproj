@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Concrete\Category.cs" />
     <Compile Include="Concrete\PartialClass.cs" />
+    <Compile Include="Concrete\Setting.cs" />
     <Compile Include="Concrete\User.cs" />
     <Compile Include="Concrete\UserGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

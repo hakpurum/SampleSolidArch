@@ -25,6 +25,7 @@ namespace Sample.Mvc.Infrastructure
         {
             try
             {
+               
                 var result = _typeService.Get(FuncFilter(id));
                 if (result.ResultCode != (int)ResultStatusCode.OK) return RedirectToAction("Index");
                 var tEditViewModel = result.ResultObject.ToCast<TEditViewModel>();
